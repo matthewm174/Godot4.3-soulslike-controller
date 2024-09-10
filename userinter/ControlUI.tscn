@@ -1,0 +1,101 @@
+[gd_scene load_steps=2 format=3 uid="uid://s6wn1f70x47o"]
+
+[ext_resource type="Script" path="res://userinter/control_ui.gd" id="1_prcvh"]
+
+[node name="ControlUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_prcvh")
+metadata/_edit_horizontal_guides_ = [551.0]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer"]
+offset_right = 1150.0
+offset_bottom = 650.0
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1150, 650)
+render_target_update_mode = 4
+
+[node name="PlayerStats" type="HBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+offset_left = 45.0
+offset_top = 29.0
+offset_right = 295.0
+offset_bottom = 118.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/PlayerStats"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="health" type="ProgressBar" parent="CanvasLayer/SubViewportContainer/SubViewport/PlayerStats/VBoxContainer"]
+layout_mode = 2
+
+[node name="mana" type="ProgressBar" parent="CanvasLayer/SubViewportContainer/SubViewport/PlayerStats/VBoxContainer"]
+layout_mode = 2
+
+[node name="stamina" type="ProgressBar" parent="CanvasLayer/SubViewportContainer/SubViewport/PlayerStats/VBoxContainer"]
+layout_mode = 2
+
+[node name="up_action" type="PanelContainer" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+custom_minimum_size = Vector2(40, 40)
+offset_left = 1050.0
+offset_top = 527.0
+offset_right = 1090.0
+offset_bottom = 567.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/up_action"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="ColorRect" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport/up_action/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="left_action" type="PanelContainer" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+custom_minimum_size = Vector2(40, 40)
+offset_left = 1004.0
+offset_top = 551.0
+offset_right = 1044.0
+offset_bottom = 591.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/left_action"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="ColorRect" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport/left_action/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="right_action" type="PanelContainer" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+custom_minimum_size = Vector2(40, 40)
+offset_left = 1096.0
+offset_top = 551.0
+offset_right = 1136.0
+offset_bottom = 591.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/right_action"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="ColorRect" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport/right_action/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="down_action" type="PanelContainer" parent="CanvasLayer/SubViewportContainer/SubViewport"]
+custom_minimum_size = Vector2(40, 40)
+offset_left = 1050.0
+offset_top = 575.0
+offset_right = 1090.0
+offset_bottom = 615.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SubViewportContainer/SubViewport/down_action"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+
+[node name="ColorRect" type="TextureRect" parent="CanvasLayer/SubViewportContainer/SubViewport/down_action/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2

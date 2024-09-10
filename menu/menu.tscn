@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cpfoddlafai5d"]
+
+[node name="Menu" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="FogVolume" type="FogVolume" parent="WorldEnvironment"]
