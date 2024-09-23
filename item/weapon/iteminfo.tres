@@ -1,0 +1,65 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cmbg41us7e32i"]
+
+[sub_resource type="GDScript" id="GDScript_84bu3"]
+script/source = "extends Resource
+class_name ItemManager
+var loadPath = \"res://item/weapon/iteminfo.tres\"
+var items_map
+var items: Dictionary = {}
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	saveData()
+	loadData()
+	
+func saveData()->void:
+	var cracked_claymore:ItemData = ItemData.new()
+	cracked_claymore.name = \"Cracked Claymore\"
+	cracked_claymore.description = \"This item aint great! Do better!\"
+	cracked_claymore.damage = 20
+	cracked_claymore.type = \"SLASH\"
+	cracked_claymore.modifiers = {}
+	cracked_claymore.item_mesh = preload(\"res://item/weapon/crackedclay.obj\")
+	cracked_claymore.texture = preload(\"res://item/weapon/crackedclaymore_Image_0.png\")
+	cracked_claymore.stackable = false
+	
+	var res_file: ItemManager = ItemManager.new()
+	
+	res_file.items = {
+	\"Cracked Claymore\": {
+		\"name\": \"Cracked Claymore\",
+		\"description\": \"This item ain't great! Do better!\",
+		\"damage\": 20,
+		\"type\": \"SLASH\",
+		\"stackable\": false
+	},
+	\"Battle Axe\": {
+		\"name\": \"Battle Axe\",
+		\"description\": \"A heavy weapon that deals massive damage.\",
+		\"damage\": 35,
+		\"type\": \"BLUNT\",
+		\"stackable\": false
+	}
+}
+	
+	
+	var res = ResourceSaver.save(res_file, loadPath, ResourceSaver.FLAG_BUNDLE_RESOURCES)
+	if res != OK:
+		print(\"ERROR SAVING ITEM FILES\")
+	else:
+		print(\"SAVING ITEMS COMPLETE\")
+	
+func loadData()->void:
+	var loaded:Resource = ResourceLoader.load(loadPath)
+	if loaded == null:
+		print(\"ERROR LOADING ITEM FILES\")
+	else:
+		items_map = loaded
+		print(\"LOADING ITEMS COMPLETE\")
+		
+func get_item_map()->Resource:
+	
+	return items_map
+"
+
+[resource]
+script = SubResource("GDScript_84bu3")

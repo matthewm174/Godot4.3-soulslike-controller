@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://b7ovjb7avn4ei"]
+
+[ext_resource type="Script" path="res://item/itemdata.gd" id="1_h3at6"]
+[ext_resource type="Texture2D" uid="uid://blay0rachtt12" path="res://item/weapon/images/360_F_63960378_etJG4hzuxQtP0JLZFVwc9dKci4x0VbNz.jpg" id="2_i1pp8"]
+
+[resource]
+script = ExtResource("1_h3at6")
+name = "Cracked Claymore"
+description = "This item sucks balls"
+stackable = false
+texture = ExtResource("2_i1pp8")
+type = "SLASH"
+damage = 20
+modifiers = {}

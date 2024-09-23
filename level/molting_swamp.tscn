@@ -1,21 +1,38 @@
-[gd_scene load_steps=9 format=3 uid="uid://cmdad4vmwa2sm"]
+[gd_scene load_steps=23 format=3 uid="uid://cmdad4vmwa2sm"]
 
+[ext_resource type="Script" path="res://level/main.gd" id="1_3sjpl"]
 [ext_resource type="PackedScene" uid="uid://bk31dpum863mr" path="res://player/Player.tscn" id="1_k2hnp"]
+[ext_resource type="Texture2D" uid="uid://0fs6k43awe8c" path="res://skybox/skybox2.png" id="1_wb0yi"]
 [ext_resource type="PackedScene" uid="uid://be1pm8jyj38f3" path="res://enemies/Offender.tscn" id="2_hudo7"]
+[ext_resource type="PackedScene" uid="uid://corrpj5dbqtde" path="res://enemies/chitterspawn/chitterspawn.tscn" id="3_amfd3"]
+[ext_resource type="Terrain3DStorage" uid="uid://bikbq81x6q78u" path="res://level/molting_swamp_terrain.res" id="4_oafc3"]
+[ext_resource type="Terrain3DMaterial" uid="uid://wwlmmoehcp72" path="res://level/moltingswamp_3d_material.tres" id="6_y3f5p"]
+[ext_resource type="Terrain3DAssets" uid="uid://dshx22imrmjrs" path="res://level/moltingswamp_3d_assets.tres" id="7_c7ur0"]
+[ext_resource type="PackedScene" uid="uid://bim6h1c7s5pk5" path="res://interactables/chest.tscn" id="9_jool2"]
+[ext_resource type="Script" path="res://userinter/inventory/inventory_data.gd" id="10_ncpmw"]
+[ext_resource type="Script" path="res://userinter/inventory/inv_slot_data.gd" id="11_1ctqu"]
+[ext_resource type="Resource" uid="uid://b7ovjb7avn4ei" path="res://item/weapon/crackedclaymore.tres" id="12_gauqb"]
+[ext_resource type="PackedScene" uid="uid://6m33lswqm8bi" path="res://item/pick_up_item.tscn" id="13_vsdfp"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lpgvo"]
-sky_horizon_color = Color(0.61421, 0.661641, 0.695496, 1)
-ground_bottom_color = Color(0.0718402, 0.192565, 0.231983, 1)
-ground_horizon_color = Color(0.61421, 0.661641, 0.695496, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_nkb8n"]
+panorama = ExtResource("1_wb0yi")
 
 [sub_resource type="Sky" id="Sky_lu8n6"]
-sky_material = SubResource("ProceduralSkyMaterial_lpgvo")
+sky_material = SubResource("PanoramaSkyMaterial_nkb8n")
 
 [sub_resource type="Environment" id="Environment_1gn0t"]
 background_mode = 2
+background_energy_multiplier = 0.27
 sky = SubResource("Sky_lu8n6")
 tonemap_mode = 2
 glow_enabled = true
+fog_light_energy = 0.3
+fog_density = 0.0054
+fog_sky_affect = 0.165
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0105
+volumetric_fog_albedo = Color(0.0274182, 0.319038, 0.413563, 1)
+volumetric_fog_emission_energy = 2.35
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_l8no1"]
 
@@ -25,28 +42,63 @@ roughness = 0.0
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yig6q"]
 points = PackedVector3Array(1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.01587, -1.01587, 0.015873, -1.01587, 1.01587, -0.015873, -1.01587, -1.01587, -0.015873, 1.01587, -1.01587, 0.015873, 1.01587, 1.01587, 0.015873, -1.01587, 1.01587, -0.015873, 1.01587)
 
+[sub_resource type="Resource" id="Resource_wrog3"]
+script = ExtResource("11_1ctqu")
+item = ExtResource("12_gauqb")
+quantity = 1
+
+[sub_resource type="Resource" id="Resource_hy3o0"]
+script = ExtResource("10_ncpmw")
+slots = Array[ExtResource("11_1ctqu")]([SubResource("Resource_wrog3"), null, null, null])
+
+[sub_resource type="Resource" id="Resource_ywusw"]
+script = ExtResource("11_1ctqu")
+item = ExtResource("12_gauqb")
+quantity = 1
+
 [node name="MoltingSwamp" type="Node3D"]
+script = ExtResource("1_3sjpl")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1gn0t")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.62388, -0.676817, 0.39076, 0, 0.5, 0.866025, -0.78152, 0.540296, -0.31194, 0, 388.678, -1142.46)
+transform = Transform3D(-0.62388, -0.676816, 0.39076, 0, 0.5, 0.866026, -0.78152, 0.540296, -0.31194, 2973.53, 388.678, -4316.85)
 light_color = Color(0.867925, 0.447248, 0.441708, 1)
 light_energy = 0.64
 shadow_enabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(10.3781, 0, 0, 0, 1, 0, 0, 0, 12.4844, 0, 0, 0)
+visible = false
 mesh = SubResource("PlaneMesh_l8no1")
 surface_material_override/0 = SubResource("StandardMaterial3D_b6sug")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+visible = false
 shape = SubResource("ConvexPolygonShape3D_yig6q")
 
 [node name="PlayerNode" parent="." instance=ExtResource("1_k2hnp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.1359)
 
 [node name="Offender" parent="." instance=ExtResource("2_hudo7")]
-transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 0, 0, 3.28355)
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 0, 0, 7.90238)
+
+[node name="Chitterspawn" parent="." instance=ExtResource("3_amfd3")]
+transform = Transform3D(0.685806, 0, 0.727785, 0, 1, 0, -0.727785, 0, 0.685806, -4.10969, 0.0158749, 6.51083)
+
+[node name="Terrain3D" type="Terrain3D" parent="."]
+storage = ExtResource("4_oafc3")
+material = ExtResource("6_y3f5p")
+assets = ExtResource("7_c7ur0")
+
+[node name="Chest" parent="." instance=ExtResource("9_jool2")]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -14.8911, 0, -9.93898)
+inventory_data = SubResource("Resource_hy3o0")
+
+[node name="PickUpItem" parent="." instance=ExtResource("13_vsdfp")]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, -12.1966, 0, -8.14055)
+slot_data = SubResource("Resource_ywusw")

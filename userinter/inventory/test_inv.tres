@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="InvData" load_steps=5 format=3 uid="uid://cire5fdd4ksbi"]
+
+[ext_resource type="Script" path="res://userinter/inventory/inventory_data.gd" id="1_2enoh"]
+[ext_resource type="Script" path="res://userinter/inventory/inv_slot_data.gd" id="2_eymgv"]
+[ext_resource type="Resource" uid="uid://b7ovjb7avn4ei" path="res://item/weapon/crackedclaymore.tres" id="3_4xq03"]
+
+[sub_resource type="Resource" id="Resource_hgli1"]
+script = ExtResource("2_eymgv")
+item = ExtResource("3_4xq03")
+quantity = 1
+
+[resource]
+script = ExtResource("1_2enoh")
+slots = Array[ExtResource("2_eymgv")]([SubResource("Resource_hgli1"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])

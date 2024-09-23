@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://cmdad4vmwa2sm"]
+
+[ext_resource type="PackedScene" uid="uid://bk31dpum863mr" path="res://player/Player.tscn" id="1_k2hnp"]
+[ext_resource type="PackedScene" uid="uid://be1pm8jyj38f3" path="res://enemies/Offender.tscn" id="2_hudo7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lpgvo"]
+sky_horizon_color = Color(0.61421, 0.661641, 0.695496, 1)
+ground_bottom_color = Color(0.0718402, 0.192565, 0.231983, 1)
+ground_horizon_color = Color(0.61421, 0.661641, 0.695496, 1)
+
+[sub_resource type="Sky" id="Sky_lu8n6"]
+sky_material = SubResource("ProceduralSkyMaterial_lpgvo")
+
+[sub_resource type="Environment" id="Environment_1gn0t"]
+background_mode = 2
+sky = SubResource("Sky_lu8n6")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l8no1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b6sug"]
+roughness = 0.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yig6q"]
+points = PackedVector3Array(1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.01587, -1.01587, 0.015873, -1.01587, 1.01587, -0.015873, -1.01587, -1.01587, -0.015873, 1.01587, -1.01587, 0.015873, 1.01587, 1.01587, 0.015873, -1.01587, 1.01587, -0.015873, 1.01587)
+
+[node name="MoltingSwamp" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1gn0t")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.62388, -0.676817, 0.39076, 0, 0.5, 0.866025, -0.78152, 0.540296, -0.31194, 0, 388.678, -1142.46)
+light_color = Color(0.867925, 0.447248, 0.441708, 1)
+light_energy = 0.64
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(10.3781, 0, 0, 0, 1, 0, 0, 0, 12.4844, 0, 0, 0)
+mesh = SubResource("PlaneMesh_l8no1")
+surface_material_override/0 = SubResource("StandardMaterial3D_b6sug")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_yig6q")
+
+[node name="PlayerNode" parent="." instance=ExtResource("1_k2hnp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11.1359)
+
+[node name="Offender" parent="." instance=ExtResource("2_hudo7")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 0, 0, 7.90238)

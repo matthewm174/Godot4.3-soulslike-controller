@@ -1,0 +1,156 @@
+[gd_scene load_steps=8 format=3 uid="uid://cccf65wtcebhr"]
+
+[ext_resource type="Script" path="res://userinter/inventory/inventory_ui.gd" id="1_a3tgw"]
+[ext_resource type="Script" path="res://userinter/inventory/inventory_interface.gd" id="1_iv8v2"]
+[ext_resource type="PackedScene" uid="uid://hwlyx8qhxpfb" path="res://userinter/inventory/InvSlot.tscn" id="2_xyg1v"]
+[ext_resource type="FontFile" uid="uid://c3xjh4r8dlrck" path="res://fonts/roman_sd/Roman SD.ttf" id="3_17yht"]
+
+[sub_resource type="Theme" id="Theme_w0hha"]
+Button/constants/h_separation = 10
+MarginContainer/constants/margin_bottom = 5
+MarginContainer/constants/margin_left = 5
+MarginContainer/constants/margin_right = 5
+MarginContainer/constants/margin_top = 5
+VBoxContainer/constants/separation = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_qnd63"]
+font = ExtResource("3_17yht")
+font_color = Color(0.47, 0.3055, 0.3055, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bw1vg"]
+font = ExtResource("3_17yht")
+font_color = Color(0.44, 0.2904, 0.2904, 1)
+
+[node name="InventoryInterface" type="Control"]
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+focus_mode = 2
+script = ExtResource("1_iv8v2")
+metadata/_edit_horizontal_guides_ = [551.0]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Inventory" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 5.0
+offset_right = 5.0
+script = ExtResource("1_a3tgw")
+
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/Inventory"]
+layout_mode = 0
+offset_right = 605.0
+offset_bottom = 500.0
+current_tab = 0
+
+[node name="Items" type="MarginContainer" parent="CanvasLayer/Inventory/TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+metadata/_tab_index = 0
+
+[node name="ItemsGrid" type="GridContainer" parent="CanvasLayer/Inventory/TabContainer/Items"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+theme = SubResource("Theme_w0hha")
+columns = 9
+
+[node name="InvSlot" parent="CanvasLayer/Inventory/TabContainer/Items/ItemsGrid" instance=ExtResource("2_xyg1v")]
+layout_mode = 2
+
+[node name="Description_Stats_Panel" type="Panel" parent="CanvasLayer/Inventory"]
+visible = false
+clip_contents = true
+layout_mode = 0
+offset_left = 620.0
+offset_top = 10.0
+offset_right = 1110.44
+offset_bottom = 510.0
+
+[node name="ItemDesc" type="Panel" parent="CanvasLayer/Inventory/Description_Stats_Panel"]
+clip_contents = true
+layout_mode = 0
+offset_left = 10.0
+offset_top = 300.0
+offset_right = 480.0
+offset_bottom = 480.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Inventory/Description_Stats_Panel/ItemDesc"]
+layout_mode = 0
+offset_right = 460.0
+offset_bottom = 322.0
+text = "This item aint shit!"
+fit_content = true
+
+[node name="ItemImage" type="Panel" parent="CanvasLayer/Inventory/Description_Stats_Panel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 30.0
+offset_right = 480.0
+offset_bottom = 270.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/Description_Stats_Panel/ItemImage"]
+layout_mode = 0
+offset_top = 290.0
+offset_right = 40.0
+offset_bottom = 330.0
+
+[node name="Description" type="Label" parent="CanvasLayer/Inventory/Description_Stats_Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 275.0
+offset_right = 60.0
+offset_bottom = 298.0
+text = "Description:"
+label_settings = SubResource("LabelSettings_qnd63")
+
+[node name="ItemName" type="Label" parent="CanvasLayer/Inventory/Description_Stats_Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 118.0
+offset_bottom = 33.0
+text = "ItemName"
+label_settings = SubResource("LabelSettings_bw1vg")
+
+[node name="ExternalInv" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 829.0
+offset_top = 36.0
+offset_right = 1129.0
+offset_bottom = 336.0
+script = ExtResource("1_a3tgw")
+
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/ExternalInv"]
+layout_mode = 0
+offset_right = 605.0
+offset_bottom = 500.0
+current_tab = 0
+
+[node name="Items" type="MarginContainer" parent="CanvasLayer/ExternalInv/TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+metadata/_tab_index = 0
+
+[node name="ItemsGrid" type="GridContainer" parent="CanvasLayer/ExternalInv/TabContainer/Items"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+theme = SubResource("Theme_w0hha")
+columns = 9
+
+[node name="InvSlot" parent="CanvasLayer/ExternalInv/TabContainer/Items/ItemsGrid" instance=ExtResource("2_xyg1v")]
+layout_mode = 2
+
+[node name="GrabbedSlot" parent="." instance=ExtResource("2_xyg1v")]
+modulate = Color(1, 1, 1, 0.301961)
+self_modulate = Color(1, 1, 1, 0)
+z_index = -2
+layout_mode = 0
+
+[connection signal="drop_slot_data" from="." to="." method="_on_drop_slot_data"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

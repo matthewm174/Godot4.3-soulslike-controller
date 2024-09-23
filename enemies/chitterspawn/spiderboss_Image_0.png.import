@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://csnqfetu8o7sg"
+path.s3tc="res://.godot/imported/spiderboss_Image_0.png-9c9c17a2ad908719c88e70aa8ac52217.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "f5a76b814e2a79a6647f62824b2cbed4"
+}
+
+[deps]
+
+source_file="res://enemies/chitterspawn/spiderboss_Image_0.png"
+dest_files=["res://.godot/imported/spiderboss_Image_0.png-9c9c17a2ad908719c88e70aa8ac52217.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

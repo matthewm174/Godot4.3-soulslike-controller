@@ -1,0 +1,33 @@
+[gd_resource type="Terrain3DAssets" load_steps=9 format=3 uid="uid://dshx22imrmjrs"]
+
+[ext_resource type="Texture2D" uid="uid://vxa024ygs415" path="res://textures/Ground068_1K-PNG/Ground068_1K-PNG_Color.png" id="1_70p7a"]
+[ext_resource type="Texture2D" uid="uid://bv8lr4hlww3ls" path="res://textures/Ground068_1K-PNG/Ground068_1K-PNG_Displacement.png" id="2_2bpu2"]
+[ext_resource type="Texture2D" uid="uid://b7imtqtt1r1xy" path="res://textures/Rock030_1K-PNG/Rock030_1K-PNG_Color.png" id="3_erbmw"]
+[ext_resource type="Texture2D" uid="uid://cpdme6nl2mg6q" path="res://textures/Rock030_1K-PNG/Rock030_1K-PNG_Displacement.png" id="4_3uh2m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1paid"]
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_jlsqh"]
+height_offset = 0.5
+density = 10.0
+material_override = SubResource("StandardMaterial3D_1paid")
+generated_type = 1
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_82w5n"]
+name = "Grass1"
+albedo_texture = ExtResource("1_70p7a")
+normal_texture = ExtResource("2_2bpu2")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_sebhc"]
+name = "Rock030_1K-PNG_Color"
+id = 1
+albedo_texture = ExtResource("3_erbmw")
+normal_texture = ExtResource("4_3uh2m")
+
+[resource]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_jlsqh")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_82w5n"), SubResource("Terrain3DTextureAsset_sebhc")])

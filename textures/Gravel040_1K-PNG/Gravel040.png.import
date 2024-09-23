@@ -1,0 +1,27 @@
+[remap]
+
+importer="3d_texture"
+type="CompressedTexture3D"
+uid="uid://cl2bm6t7ejd32"
+path.s3tc="res://.godot/imported/Gravel040.png-fbb1ac2c37dd826b8fd2b3797e468bb3.s3tc.ctex3d"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+
+[deps]
+
+source_file="res://textures/Gravel040_1K-PNG/Gravel040.png"
+dest_files=["res://.godot/imported/Gravel040.png-fbb1ac2c37dd826b8fd2b3797e468bb3.s3tc.ctex3d"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=8
+slices/vertical=8
