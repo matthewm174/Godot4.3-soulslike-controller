@@ -52,10 +52,10 @@ mat3 rotation_matrix(float angle_x, float angle_y)
 void fragment( )
 {
 	vec3 vertex = ( INV_VIEW_MATRIX  * vec4( VERTEX, 1.0 ) ).xyz;
-	
+
     mat3 rotation = rotation_matrix(shine_angle_x, shine_angle_y);
     vertex = rotation * vertex;
-	
+
 	float width = shine_width * 0.001 * cycle_interval;
 	float frequency = floor( sin( vertex.z * cycle_interval + TIME * shine_speed * cycle_interval ) + width);
 	ALBEDO = shine_color.rgb;

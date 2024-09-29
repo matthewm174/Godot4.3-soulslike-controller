@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://cn83xab6s84h6"
+path="res://.godot/imported/MoldarrDialogue.dialogue-d675ffa436cc46d70eff9e2f919a9ee8.tres"
+
+[deps]
+
+source_file="res://npc/dialogues/MoldarrDialogue.dialogue"
+dest_files=["res://.godot/imported/MoldarrDialogue.dialogue-d675ffa436cc46d70eff9e2f919a9ee8.tres"]
+
+[params]
+
+defaults=true

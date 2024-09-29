@@ -35,5 +35,5 @@ void fragment(){
 	NORMALMAP = mix(texture(ground_normal_map,UV).rgb,newnormal,bias(blend_raining,0.4));
 	ALBEDO = texture(ground_albedo,UV+(newnormal.xz*bias(blend_raining,8.0)/50.0)).rgb + fresnel*0.1;
 	RIM = blend_raining / 10.0;
-	
+
 }

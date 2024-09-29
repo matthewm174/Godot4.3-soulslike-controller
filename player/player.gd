@@ -133,6 +133,8 @@ func handle_input() -> void:
 				player_parry()
 			if Input.is_action_just_pressed("use_item"):
 				player_use_quick_item()
+			if Input.is_action_just_pressed("interact"):
+				interact()
 
 # thing character can do
 func player_parry():
@@ -205,6 +207,9 @@ func play_draw_wep():
 		is_drawing = true
 		drawing_time.start()
 	
+func interact() -> void:
+	if interaction_ray.is_colliding():
+		interaction_ray.get_collider().player_interact()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 
@@ -270,9 +275,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			t_piv.rotation_degrees = Vector3(pitch, yaw, 0)
 
 
-func interact() -> void:
-	if interaction_ray.is_colliding():
-		interaction_ray.get_collider().player_interact()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

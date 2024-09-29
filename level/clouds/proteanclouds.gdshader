@@ -21,9 +21,9 @@ uniform vec3 color2 = vec3(0.033,0.07,0.03);
 	fetches of volume gradient computation for improved lighting.
 
 	To further accelerate marching, since the volume is smooth, more than half the the density
-	information isn't used to rendering or shading but only as an underlying volume	distance to 
-	determine dynamic step size, by carefully selecting an equation	(polynomial for speed) to 
-	step as a function of overall density (not necessarily rendered) the visual results can be 
+	information isn't used to rendering or shading but only as an underlying volume	distance to
+	determine dynamic step size, by carefully selecting an equation	(polynomial for speed) to
+	step as a function of overall density (not necessarily rendered) the visual results can be
 	the	same as a naive implementation with ~40% increase in rendering performance.
 
 	Since the dynamic marching step size is even less uniform due to steps not being rendered at all
@@ -78,11 +78,11 @@ vec4 render( in vec3 ro, in vec3 rd, float time, float prm1, vec2 bsMo )
         vec2 mpv = map(pos, prm1, bsMo);
 		float den = clamp(mpv.x-0.3,0.,1.)*1.12;
 		float dn = clamp((mpv.x + 2.),0.,3.);
-        
+
 		vec4 col = vec4(0.);
         if (mpv.x > 0.6)
         {
-        
+
             col = vec4(sin(vec3(5.,0.4,0.2) + mpv.y*0.1 +sin(pos.z*0.4)*0.5 + 1.8)*0.5 + 0.5,0.08);
             col *= den*den*den;
 			col.rgb *= linstep(4.,-2.5, mpv.x)*2.3;
@@ -90,7 +90,7 @@ vec4 render( in vec3 ro, in vec3 rd, float time, float prm1, vec2 bsMo )
             dif += clamp((den - map(pos+.35, prm1, bsMo).x)/2.5, 0.001, 1. );
             col.xyz *= den*(color1 + 1.5*color2*dif);
         }
-		
+
 		float fogC = exp(t*0.2 - 2.2);
 		col.rgba += vec4(0.06,0.11,0.11, 0.1)*clamp(fogC-fogT, 0., 1.);
 		fogT = fogC;
@@ -120,22 +120,22 @@ vec3 iLerp(in vec3 a, in vec3 b, in float x)
 }
 
 void fragment()
-{	
+{
 	float prm1 = 0.;
 	vec2 bsMo = vec2(0);
 	vec2 q = SCREEN_UV;
     vec2 p = q - 0.5;
     bsMo = q - disp_;
-    
+
     float time = iTime*speed;
     vec3 ro = vec3(0,0,time);
-    
+
     ro += vec3(sin(iTime)*0.5,sin(iTime*1.)*0.,0);
-        
+
     float dspAmp = .85;
     ro.xy += disp(ro.z)*dspAmp;
     float tgtDst = 3.5;
-    
+
     vec3 target = normalize(ro - vec3(disp(time + tgtDst)*dspAmp, time + tgtDst));
     ro.x -= bsMo.x*2.;
     vec3 rightdir = normalize(cross(target, vec3(0,1,0)));
@@ -145,13 +145,13 @@ void fragment()
     rd.xy *= rot(-disp(time + 3.5).x*0.2 + bsMo.x);
     prm1 = smoothstep(-0.4, 0.4,sin(iTime*0.3));
 	vec4 scn = render(ro, rd, time, prm1, bsMo);
-		
+
     vec3 col = scn.rgb;
     col = iLerp(col.bgr, col.rgb, clamp(1.-prm1,0.05,1.));
-    
+
     col = pow(col, vec3(.55,0.65,0.6))*vec3(1.,.97,.9);
 
     col *= pow( 16.0*q.x*q.y*(1.0-q.x)*(1.0-q.y), 0.12)*0.7+0.3; //Vign
-    
+
 	fragColor = vec4( col, 1.0 );
 }

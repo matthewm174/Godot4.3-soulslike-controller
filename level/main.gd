@@ -22,12 +22,9 @@ func _ready() -> void:
 
 	for node in get_tree().get_nodes_in_group("external_inventory"):
 		node.toggle_inventory.connect(toggle_inventory_interface)
-	for node in get_tree().get_nodes_in_group("npc"):
-		node.toggle_dialogue.connect(toggle_dialogue_interface)
+
 		
-func toggle_dialogue_interface() -> void:
-	print("dialog triggered")
-	pass
+
 	#dialogue_interface.toggle_visibility()
 		
 func toggle_inventory_interface(external_inv_owner = null) -> void:

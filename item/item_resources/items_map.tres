@@ -1,23 +1,23 @@
 [gd_resource type="Resource" script_class="ItemMap" load_steps=6 format=3]
 
-[ext_resource type="ArrayMesh" path="res://item/weapon/crackedclay.obj" id="1_x8ews"]
-[ext_resource type="Script" path="res://item/itemdata.gd" id="2_504oy"]
-[ext_resource type="Texture2D" path="res://item/weapon/crackedclaymore_Image_0.png" id="3_jg2q7"]
-[ext_resource type="Script" path="res://item/item_resources/item_map.gd" id="4_q5saf"]
+[ext_resource type="ArrayMesh" path="res://item/weapon/crackedclay.obj" id="1_3dbxv"]
+[ext_resource type="Script" path="res://item/itemdata.gd" id="2_06qwr"]
+[ext_resource type="Texture2D" path="res://item/weapon/crackedclaymore_Image_0.png" id="3_g1d60"]
+[ext_resource type="Script" path="res://item/item_resources/item_map.gd" id="4_qa80k"]
 
-[sub_resource type="Resource" id="Resource_56gs0"]
-script = ExtResource("2_504oy")
+[sub_resource type="Resource" id="Resource_xmiiy"]
+script = ExtResource("2_06qwr")
 name = "Cracked Claymore"
 description = "This item aint great! Do better!"
 stackable = false
-texture = ExtResource("3_jg2q7")
+texture = ExtResource("3_g1d60")
 type = "SLASH"
 damage = 20
 modifiers = {}
-item_mesh = ExtResource("1_x8ews")
+item_mesh = ExtResource("1_3dbxv")
 
 [resource]
-script = ExtResource("4_q5saf")
+script = ExtResource("4_qa80k")
 items = {
-"Cracked Claymore": SubResource("Resource_56gs0")
+"Cracked Claymore": SubResource("Resource_xmiiy")
 }

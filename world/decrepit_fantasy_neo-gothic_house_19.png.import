@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://d1l6kxmjn0na5"
+path.s3tc="res://.godot/imported/decrepit_fantasy_neo-gothic_house_19.png-48068416b7a76ce670a11c0baa67ddbe.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "dc7adcf387a01e7c2e3d5bee156c6b80"
+}
+
+[deps]
+
+source_file="res://world/decrepit_fantasy_neo-gothic_house_19.png"
+dest_files=["res://.godot/imported/decrepit_fantasy_neo-gothic_house_19.png-48068416b7a76ce670a11c0baa67ddbe.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
