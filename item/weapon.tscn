@@ -53,19 +53,19 @@ size = Vector3(0.1, 0.025, 1)
 
 [node name="Weapon" type="Node3D"]
 
-[node name="Sword_Long_A_001_default_0" type="MeshInstance3D" parent="."]
+[node name="WeaponMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1.19209e-07, 0, 1, 0, 1, 0, -1, 0, -1.19209e-07, -0.424821, 0, 0)
 mesh = SubResource("ArrayMesh_glt0h")
 skeleton = NodePath("")
 
-[node name="hitbox" type="Area3D" parent="Sword_Long_A_001_default_0"]
+[node name="hitbox" type="Area3D" parent="WeaponMesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86859e-08, 0, 0.156749)
 collision_layer = 2
 collision_mask = 0
 monitoring = false
 script = ExtResource("3_tbo6u")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Sword_Long_A_001_default_0/hitbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WeaponMesh/hitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.99449e-08, 0, 0.418969)
 shape = SubResource("BoxShape3D_hv80l")
 disabled = true

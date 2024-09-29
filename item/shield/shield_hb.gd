@@ -20,7 +20,7 @@ func _ready() -> void:
 
 func _init() -> void:
 	Globals.current_player.connect("on_block",  self.activate_hitbox)
-	Globals.current_player.connect("shield_equipped",  self.shield_equipped)
+	#Globals.current_player.connect("shield_equipped",  self.shield_equipped)
 	collision_layer = 2
 	collision_mask = 0
 	pass

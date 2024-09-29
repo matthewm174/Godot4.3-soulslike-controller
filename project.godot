@@ -27,6 +27,8 @@ enabled=PackedStringArray("res://addons/terrain_3d/plugin.cfg")
 
 enemy=""
 external_inventory=""
+player="group for just the player"
+npc=""
 
 [input]
 
@@ -125,3 +127,4 @@ interact={
 
 3d_physics/layer_1="world"
 3d_physics/layer_2="hitbox"
+3d_physics/layer_3="interact"

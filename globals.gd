@@ -1,6 +1,11 @@
 extends Node
 
 var current_player
+
+var enemies: Array[Enemy] = []
+
+
+
 func play_sound(sound_name, db = -10):
 	var player = AudioStreamPlayer.new()
 	player.connect("finished", Callable(self, "on_audio_finished").bind(player))

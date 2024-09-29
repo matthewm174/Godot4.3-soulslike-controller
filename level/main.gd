@@ -1,7 +1,12 @@
 extends Node3D
 @onready var player_node: CharacterBody3D = $PlayerNode
+
 @onready var inventory_interface = player_node.get_node("Inventory")
 @onready var item_manager = ItemManager.new()
+
+@onready var offender: Enemy = $Offender
+
+
 
 const MOLTING_SWAMP = preload("res://level/molting_swamp.tscn")
 var is_open
@@ -17,6 +22,13 @@ func _ready() -> void:
 
 	for node in get_tree().get_nodes_in_group("external_inventory"):
 		node.toggle_inventory.connect(toggle_inventory_interface)
+	for node in get_tree().get_nodes_in_group("npc"):
+		node.toggle_dialogue.connect(toggle_dialogue_interface)
+		
+func toggle_dialogue_interface() -> void:
+	print("dialog triggered")
+	pass
+	#dialogue_interface.toggle_visibility()
 		
 func toggle_inventory_interface(external_inv_owner = null) -> void:
 	inventory_interface.toggle_visibility()

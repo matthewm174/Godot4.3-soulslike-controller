@@ -1,5 +1,5 @@
 extends RigidBody3D
-
+class_name Enemy
 const PLAYER_DETECTION_RANGE = 10.0
 const PLAYER_ATTACK_RANGE = .9
 const WALK_SPEED = 2.25
@@ -24,11 +24,15 @@ var attack_timeout = 1.0
 @onready var locosm = animtree.get("parameters/LocomotionSM/playback")
 @onready var offhandsm = animtree.get("parameters/Offhand/playback")
 var direction_input := Vector2.ZERO
+@onready var weapon: Node3D = $offender/Armature/GeneralSkeleton/WepHandAtt/WepHandContainer/Weapon
 
-
+signal on_enemy_attack
 
 var timer_anim1 : Timer = Timer.new()
 var timer_prejump : Timer = Timer.new()
+
+func _init():
+	Globals.enemies.append(self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -51,7 +55,6 @@ func _process(delta: float) -> void:
 		# look at player
 		var target = Globals.current_player.global_transform.origin
 		look_at(2 * global_transform.origin - Globals.current_player.global_transform.origin, Vector3.UP)
-		#model.global_transform.basis = model.global_transform.basis.slerp(model.global_transform.looking_at(target, Vector3.UP).basis, 5.0 * delta)
 		if distance_to_player > PLAYER_ATTACK_RANGE:
 			global_transform.origin = global_transform.origin.move_toward( target, delta)
 
@@ -85,7 +88,7 @@ func set_action(index):
 			animtree.set("parameters/LocomotionSM/move/blend_position", direction_input)
 			locosm.travel("move")
 		"attack":
-			emit_signal("on_attack")
+			emit_signal("on_enemy_attack")
 			uppersm.travel("lite_atk")
 		"block":
 			offhandsm.travel("block")
