@@ -19,3 +19,7 @@ smoother movement (also creepy monster)
 
 https://github.com/user-attachments/assets/a6ea36b1-49ad-4521-a220-7fb3a55fcc06
 
+dialogue system using the godot dialogue amanager addon
+
+https://github.com/user-attachments/assets/5b346641-f50e-4e2a-9e4a-698268b57b69
+
